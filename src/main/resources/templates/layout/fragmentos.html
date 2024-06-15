@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="headlinks">
+        <link rel="icon" href="/library.svg"/>
+        <title>LibraryID</title>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    </head>
+    <body>
+        <header class="mb-3" th:fragment="header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    <img src="/library.svg" width="30" height="30" class="d-inline-block align-top" alt=""/> LibraryID
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Categorias
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="#">Libros</a>
+                                <a class="dropdown-item" href="#">Autores</a>
+                                <a class="dropdown-item" href="#">Editoriales</a>
+                                <a class="dropdown-item" href="#">Generos literarios</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <footer th:fragment="footer" class="navbar navbar-dark bg-dark text-white mt-5" >
+            <div class="container">
+                <div class="col">
+                    <section class="lead text-center" style="display: flex; justify-content: center;">
+                        <!-- Twitter -->
+                        <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #55acee; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"
+                            href="#!"
+                            role="button"
+                            ><i class="fab fa-twitter"></i
+                            ></a> 
+                        <!-- Google -->
+                        <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #dd4b39; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"
+                            href="#!"
+                            role="button"
+                            ><i class="fab fa-google"></i
+                            ></a> 
+                        <!-- Linkedin -->
+                        <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #0082ca; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"
+                            href="#!"
+                            role="button"
+                            ><i class="fab fa-linkedin-in"></i
+                            >
+                        </a> 
+                        <!-- Github -->
+                        <a
+                            data-mdb-ripple-init
+                            class="btn text-white btn-floating m-1"
+                            style="background-color: #333333; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"
+                            href="#!"
+                            role="button"
+                            ><i class="fab fa-github"></i
+                            >
+                        </a>
+                    </section>
+                    <div class="text-center">
+                        &copy 2024 Derechos Reservados
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

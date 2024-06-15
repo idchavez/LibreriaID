@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/fragmentos :: headlinks">
+        <title>Listado de Libros</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+
+        <section th:fragment="listadoLibros" id="libros">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Libros</h4>
+                            </div>
+                            <div class="table-responsive" th:if="${libros != null and !libros.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Titulo</th>
+                                            <th>Paginas</th>
+                                            <th>Edicion</th>
+                                            <th>Editorial</th>
+                                            <th>Fecha</th>
+                                            <th>Idioma</th>
+                                            <th>Genero</th>
+                                            <th>Autor</th>
+                                            <th>Estado</th>
+                                            <th class="text-center" colspan="2">
+                                                Acciones
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="libro, contador : ${libros}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${libro.titulo}]]</td>
+                                            <td>[[${libro.paginas}]]</td>
+                                            <td>[[${libro.edicion}]]</td>
+                                            <td>[[${libro.editorialLibro.nomEditorial}]]</td>
+                                            <td>[[${libro.fechaPublicacion}]]</td>
+                                            <td>[[${libro.idiomaLibro.idioma}]]</td>
+                                            <td>[[${libro.generoLibro.genero}]]</td>
+                                            <td>[[${libro.autorLibro.alias}]]</td>
+                                            <td>[[${libro.estadoLibro.estado}]]</td>
+                                            <td>
+                                                <a th:href="@{/editar/} + ${libro.idLibro}" class="btn btn-outline-success">
+                                                    <i></i> Editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminar(idLibro=${libro.idLibro})}" class="btn btn-outline-danger">
+                                                    <i></i> Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${libros==null or libros.empty}">
+                                <span >Lista de libros vacia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </body>
+</html>
