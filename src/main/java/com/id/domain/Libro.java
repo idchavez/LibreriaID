@@ -6,7 +6,6 @@
 package com.id.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -20,10 +19,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.*;
 
@@ -57,12 +52,12 @@ public class Libro implements Serializable {
     @Size(max = 20)
     @NotEmpty
     private String edicion;
-    @NotEmpty
+    //@NotEmpty
     @Column(name = "fecha_Publicacion")
     //@Temporal(TemporalType.DATE)
     private String fechaPublicacion;
     
-    @NotNull
+    //@NotNull
     @JoinColumn(name = "autor_libro", referencedColumnName = "id_autor")
     @ManyToOne
     private Autor autorLibro;

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="layout/fragmentos :: headlinks">
-        <title>LibraryID</title>
+        <title>Nuevo Libro</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/fragmentos :: header"></header>
-        <section th:replace="layout/botonAgregar :: botonAgregar"></section>
-        <section th:replace="layout/listadoLibros :: listadoLibros"></section>
+        <section th:replace="layout/agregarLibro :: agregarLibro"></section>
         <footer th:replace="layout/fragmentos :: footer"></footer>
     </body>
 </html>

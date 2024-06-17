@@ -8,63 +8,103 @@
     </head>
     <body>
         <section th:fragment="agregarLibro">
-            <div id="agregarCliente" class="modal fade">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-dark text-white">
-                            <h5 class="modal-title">Agregar Libro</h5>
-                            <button class="close" data-dismiss="modal">
-                                <i class="btn btn-outline-danger fas fa-times"></i>
-                            </button>
-                        </div>
-                        <form th:action="@{/guardar}" th:object="${libro}"
-                              method="POST" class="was-validated">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="titulo">Titulo</label>
-                                    <input type="text" class="form-control" name="titulo" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="paginas">Paginas</label>
-                                    <input type="text" class="form-control" name="paginas" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="edicion">Edicion</label>
-                                    <input type="text" class="form-control" name="edicion" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="editorial">Editorial</label>
-                                    <input type="text" class="form-control" name="editorial" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="fecha">Fecha</label>
-                                    <input type="date" class="form-control" name="fecha" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="idioma">Idioma</label>
-                                    <input type="text" class="form-control" name="idioma" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="genero">Genero</label>
-                                    <input type="text" class="form-control" name="genero" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="autor">Autor</label>
-                                    <input type="text" class="form-control" name="autor" required="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label for="estado">Estado</label>
-                                    <input type="text" class="form-control" name="estado" required="true"/>
-                                </div>
+            <form th:action="@{/guardar}" th:object="${libro}"
+                  method="POST" class="was-validated">
 
+                <section th:replace="layout/botonesAgregarLibro :: botonesAgregarLibro"></section>
+
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4>Agregar Libro</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="titulo">Titulo</label>
+                                            <input type="text" class="form-control" name="titulo" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="paginas">Paginas</label>
+                                            <input type="text" class="form-control" name="paginas" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="edicion">Edicion</label>
+                                            <input type="text" class="form-control" name="edicion" required="true"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="editorial">Editorial</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="editorialLibro.idEditorial" required>
+                                                <option value="" disabled selected>Seleccione una editorial</option>
+                                                <option th:each="editorial : ${editoriales}"
+                                                        th:value="${editorial.idEditorial}"
+                                                        th:text="${editorial.nomEditorial}"
+                                                        ></option>
+                                            </select>
+                                            <label for="pais">Pais Editorial</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="paisEditorial.idPais" required>
+                                                <option value="" disabled selected>Seleccione un pais</option>
+                                                <option th:each="pais : ${paises}"
+                                                        th:value="${pais.idPais}"
+                                                        th:text="${pais.pais}"
+                                                        ></option>
+                                            </select>
+                                            <!--<input type="text" class="form-control mt-2" name="newEditorial" placeholder="Nueva Editorial"/>-->
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fecha">Fecha</label>
+                                            <input type="date" class="form-control" name="fechaPublicacion" required="true"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="idioma">Idioma</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="idiomaLibro.idIdioma" required>
+                                                <option value="" disabled selected>Seleccione un idioma</option>
+                                                <option th:each="idioma : ${idiomas}"
+                                                        th:value="${idioma.idIdioma}"
+                                                        th:text="${idioma.idioma}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="genero">Genero</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="generoLibro.idGenero" required>
+                                                <option value="" disabled selected>Seleccione un genero</option>
+                                                <option th:each="genero : ${generos}"
+                                                        th:value="${genero.idGenero}"
+                                                        th:text="${genero.genero}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="autor">Autor</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="autorLibro.IdAutor" required>
+                                                <option value="" disabled selected>Seleccione un autor</option>
+                                                <option th:each="autor : ${autores}"
+                                                        th:value="${autor.idAutor}"
+                                                        th:text="${autor.alias}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="estadoLibro.idEstado" required>
+                                                <option value="" disabled selected>Seleccione una estado</option>
+                                                <option th:each="estado : ${estadosLibro}"
+                                                        th:value="${estado.idEstado}"
+                                                        th:text="${estado.estado}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-outline-primary" type="submit">Guardar</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </section>
     </body>
 </html>

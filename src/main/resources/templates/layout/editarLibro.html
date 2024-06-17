@@ -11,13 +11,15 @@
             <form th:action="@{/guardar}" th:object="${libro}"
                   method="POST" class="was-validated">
                 <input type="hidden" name="idLibro" th:field="*{idLibro}"/>
+                
                 <section th:replace="layout/botonesEditar :: botonesEditar"></section>
+                
                 <div id="details">
                     <div class="container">
                         <div class="row">
                             <div class="col">
                                 <div class="card">
-                                    <div class="card-header">
+                                    <div class="card-header bg-dark text-white">
                                         <h4>Editar</h4>
                                     </div>
                                     <div class="card-body">
@@ -38,8 +40,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="editorial">Editorial</label>
-                                            <input type="text" class="form-control" name="editorial"
-                                                   required="true" th:field="*{editorialLibro.nomEditorial}"/>
+                                            <select class="form-control no-valid" style="appearance: none"  name="editorialLibro.idEditorial" required>
+                                                <option value="" disabled selected>Seleccione una editorial</option>
+                                                <option th:each="editorial : ${editoriales}"
+                                                        th:value="${editorial.idEditorial}"
+                                                        th:text="${editorial.nomEditorial}"
+                                                        th:selected="${editorial.idEditorial} == *{editorialLibro.idEditorial}"
+                                                        ></option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="fecha">Fecha</label>
@@ -49,7 +57,6 @@
                                         <div class="form-group">
                                             <label for="idioma">Idioma</label>
                                             <select class="form-control no-valid" style="appearance: none" name="idioma">
-                                                
                                                 <option th:each="idioma : ${idiomas}"
                                                         th:value="${idioma.idIdioma}"
                                                         th:text="${idioma.idioma}"
@@ -59,8 +66,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="genero">Genero</label>
-                                            <input type="text" class="form-control" name="genero"
-                                                   required="true" th:field="*{generoLibro.genero}"/>
+                                            <select class="form-control no-valid" style="appearance: none" name="genero">
+                                                <option th:each="genero : ${generos}"
+                                                        th:value="${genero.idGenero}"
+                                                        th:text="${genero.genero}"
+                                                        th:selected="${genero.idGenero} == *{generoLibro.idGenero}"
+                                                        ></option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="autor">Autor</label>
