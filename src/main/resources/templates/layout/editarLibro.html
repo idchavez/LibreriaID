@@ -16,8 +16,8 @@
                 
                 <div id="details">
                     <div class="container">
-                        <div class="row">
-                            <div class="col">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
                                 <div class="card">
                                     <div class="card-header bg-dark text-white">
                                         <h4>Editar</h4>
@@ -56,7 +56,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="idioma">Idioma</label>
-                                            <select class="form-control no-valid" style="appearance: none" name="idioma">
+                                            <select class="form-control no-valid" style="appearance: none" name="idiomaLibro.idIdioma">
+                                                <option value="" disabled selected>Seleccione un idioma</option>
                                                 <option th:each="idioma : ${idiomas}"
                                                         th:value="${idioma.idIdioma}"
                                                         th:text="${idioma.idioma}"
@@ -66,7 +67,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="genero">Genero</label>
-                                            <select class="form-control no-valid" style="appearance: none" name="genero">
+                                            <select class="form-control no-valid" style="appearance: none" name="generoLibro.idGenero">
+                                                <option value="" disabled selected>Seleccione un genero</option>
                                                 <option th:each="genero : ${generos}"
                                                         th:value="${genero.idGenero}"
                                                         th:text="${genero.genero}"
@@ -76,13 +78,25 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="autor">Autor</label>
-                                            <input type="text" class="form-control" name="autor"
-                                                   required="true" th:field="*{autorLibro.alias}"/>
+                                            <select class="form-control no-valid" style="appearance: none" name="autorLibro.IdAutor">
+                                                <option value="" disabled selected>Seleccione un autor</option>
+                                                <option th:each="autor : ${autores}"
+                                                        th:value="${autor.idAutor}"
+                                                        th:text="${autor.alias}"
+                                                        th:selected="${autor.idAutor} == *{autorLibro.idAutor}">
+                                                </option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="estado">Estado</label>
-                                            <input type="text" class="form-control" name="estado"
-                                                   required="true" th:field="*{estadoLibro.estado}"/>
+                                            <select class="form-control no-valid" style="appearance: none" name="estadoLibro.idEstado">
+                                                <option value="" disabled selected>Seleccione un estado</option>
+                                                <option th:each="estado : ${estadosLibro}"
+                                                        th:value="${estado.idEstado}"
+                                                        th:text="${estado.estado}"
+                                                        th:selected="${estado.idEstado} == *{estadoLibro.idEstado}">
+                                                </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

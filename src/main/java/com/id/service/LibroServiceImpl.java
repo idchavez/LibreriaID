@@ -24,7 +24,10 @@ public class LibroServiceImpl implements LibroService{
     
     @Override
     @Transactional(readOnly = true)
-    public List<Libro> listarLibros() {
+    public List<Libro> listarLibros(String cadena) {
+        if (cadena != null) {
+            return libroDao.findAll(cadena);
+        }
         return (List<Libro>) libroDao.findAll();
     }
 

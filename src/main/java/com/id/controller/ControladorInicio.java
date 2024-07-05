@@ -3,13 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.id.web;
+package com.id.controller;
 
-import com.id.domain.Autor;
-import com.id.domain.Editorial;
-import com.id.domain.EstadoLibro;
-import com.id.domain.Genero;
-import com.id.domain.Idioma;
 import com.id.domain.Libro;
 import com.id.service.AutorService;
 import com.id.service.EditorialService;
@@ -21,12 +16,12 @@ import com.id.service.PaisService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 /**
  *
  * @author id
@@ -55,18 +50,25 @@ public class ControladorInicio {
     
     @Autowired
     private EstadoLibroService estadoLibroService;
-    
-    @GetMapping("/")
-    public String inicio(Model model) {
-        log.info("Entrando al método inicio del controlador");
-        var libros = libroService.listarLibros();
-        log.info("Ejecutando el Controlador Spring MVC");
-        model.addAttribute("libros", libros);
+            
+    @GetMapping("/home")
+    public String inicioApp(Model model) {
+        
         return "index";
     }
 
+    @GetMapping("/listadolibros")
+    public String listadoLibros(Model model, @Param("cadena") String cadena) {
+        log.info("Entrando al método inicio del controlador");
+        var libros = libroService.listarLibros(cadena);
+        log.info("Ejecutando el Controlador Spring MVC");
+        model.addAttribute("libros", libros);
+        model.addAttribute("cadena", cadena);
+        return "libros";
+    }
+    
     @GetMapping("/agregar")
-    public String agregar(Libro libro, Editorial editorial, Idioma idioma, Genero genero, Autor autor, EstadoLibro estadoLibro, Model model) {
+    public String agregar(Model model) {
         log.info("Entrando al controlador agregar");
         var editoriales = editorialService.listarEditoriales();
         model.addAttribute("editoriales", editoriales);
@@ -95,7 +97,7 @@ public class ControladorInicio {
     }
 
     @GetMapping("/editar/{idLibro}")
-    public String editar(Model model, Libro libro, Editorial editorial, Idioma idioma, Genero genero, Autor autor, EstadoLibro estadoLibro) {
+    public String editar(Model model, Libro libro) {
         libro = libroService.encontrarLibro(libro);
         model.addAttribute("libro", libro);
         var editoriales = editorialService.listarEditoriales();

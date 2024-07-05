@@ -11,12 +11,18 @@
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script type="text/javascript">
+            function limpiar(){
+                window.location.href = "/listadolibros";
+            }
+        </script>
     </head>
-    <body>
-        <header class="mb-3" th:fragment="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <img src="/library.svg" width="30" height="30" class="d-inline-block align-top" alt=""/> LibraryID
+    <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
+        <header th:fragment="header"><!--class="mb-3"-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+                <a class="navbar-brand" href="/">
+                    <img src="/library.svg" width="50" height="50" class="d-inline-block align-top" alt=""/>
+                    <span class="navbar-text h4">Libreria ID</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,28 +30,35 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" th:href="@{/}">Inicio <span class="sr-only">(current)</span></a>
+                            <a class="nav-link h5" th:href="@{/home}">Inicio <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle h5" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Categorias
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Libros</a>
+                                <a class="dropdown-item" href="/listadolibros">Libros</a>
                                 <a class="dropdown-item" href="#">Autores</a>
                                 <a class="dropdown-item" href="#">Editoriales</a>
                                 <a class="dropdown-item" href="#">Generos literarios</a>
                             </div>
                         </li>
                     </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"/>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                    <form class="form-inline my-2 my-lg-0"><!--mt-5-->
+                        <input class="form-control mr-sm-2 form-control-lg" type="search" name="cadena" th:value="${cadena}" placeholder="Buscar" aria-label="Search"/>
+                        <button class="btn btn-outline-success my-2 my-sm-0 btn-lg" type="submit" value="buscar">Buscar</button>
+                        &nbsp;&nbsp;
+                        <button class="btn btn-outline-info my-2 my-sm-0 btn-lg" type="button" onclick="limpiar()">Limpiar</button>
                     </form>
                 </div>
             </nav>
         </header>
-        <footer th:fragment="footer" class="navbar navbar-dark bg-dark text-white mt-5" >
+        <main style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));" th:fragment="main">
+            <div class="text-center">
+                <img th:src="@{/library.jpg}" alt="Descripción de la imagen" class="img-fluid">
+            </div>
+        </main>
+        <footer th:fragment="footer" class="navbar navbar-dark bg-dark text-white mt-3" ><!--mt-5-->
             <div class="container">
                 <div class="col">
                     <section class="lead text-center" style="display: flex; justify-content: center;">
@@ -94,5 +107,6 @@
                 </div>
             </div>
         </footer>
+        
     </body>
 </html>

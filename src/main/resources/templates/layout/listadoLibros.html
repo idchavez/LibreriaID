@@ -6,7 +6,7 @@
         <title>Listado de Libros</title>
         <meta charset="UTF-8"/>
     </head>
-    <body>
+    <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
 
         <section th:fragment="listadoLibros" id="libros">
             <div class="container">
@@ -48,7 +48,7 @@
                                             <td>[[${libro.autorLibro.alias}]]</td>
                                             <td>[[${libro.estadoLibro.estado}]]</td>
                                             <td>
-                                                <a th:href="@{/editar/} + ${libro.idLibro}" class="btn btn-outline-success">
+                                                <a th:href="@{/editar/} + ${libro.idLibro}" class="btn btn-outline-primary">
                                                     <i></i> Editar
                                                 </a>
                                             </td>

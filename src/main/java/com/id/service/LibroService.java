@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface LibroService {
     
-    public List<Libro> listarLibros();
+    public List<Libro> listarLibros(String cadena);
     
     public void guardar(Libro libro);
     
