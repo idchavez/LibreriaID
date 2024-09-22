@@ -28,7 +28,6 @@ public class ApplicationConfig {
     
     private final IUsuarioDao usuarioDao;
     
-    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
     }

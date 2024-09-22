@@ -19,5 +19,6 @@ public interface IUsuarioDao extends JpaRepository<Usuario, Integer>{
     //Usuario findByUsuario(String usuario);
     boolean existsByUsuario(String usuario);
     boolean existsByEmail(String email);
+    Optional<Usuario> findByEmail(String email);
     
 }

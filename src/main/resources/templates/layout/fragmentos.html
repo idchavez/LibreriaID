@@ -12,16 +12,20 @@
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
         <script type="text/javascript">
-            function limpiar(){
+            function limpiar() {
                 window.location.href = "/listadolibros";
             }
         </script>
+        <script src="/js/logout.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.5.2/collection/components/icon/icon.min.css">
     </head>
     <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
         <header th:fragment="header"><!--class="mb-3"-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
                 <a class="navbar-brand" href="/">
-                    <img src="/library.svg" width="50" height="50" class="d-inline-block align-top" alt=""/>
+                    <img src="/images/library.svg" width="50" height="50" class="d-inline-block align-top" alt=""/>
                     <span class="navbar-text h4">Libreria ID</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,12 +54,28 @@
                         &nbsp;&nbsp;
                         <button class="btn btn-outline-info my-2 my-sm-0 btn-lg" type="button" onclick="limpiar()">Limpiar</button>
                     </form>
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mr-3">
+                            <a href="#" class="nav-link">
+                                <ion-icon name="person-circle-sharp" style="font-size: 30px; vertical-align: middle;"></ion-icon>
+                                <span>Bienvenido:</span>
+                                <span th:text="${usuario}"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                                <a href="#" onclick="logout(); return false;" class="nav-link">
+                                    <ion-icon name="log-out-outline" style="font-size: 30px; vertical-align: middle;"></ion-icon> Salir
+                                </a>
+                        </li>
+                    </ul>
+
                 </div>
             </nav>
         </header>
         <main style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));" th:fragment="main">
             <div class="text-center">
-                <img th:src="@{/library.jpg}" alt="Descripción de la imagen" class="img-fluid">
+                <img th:src="@{/images/library.jpg}" alt="Descripción de la imagen" class="img-fluid">
             </div>
         </main>
         <footer th:fragment="footer" class="navbar navbar-dark bg-dark text-white mt-3" ><!--mt-5-->
@@ -107,6 +127,7 @@
                 </div>
             </div>
         </footer>
-        
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

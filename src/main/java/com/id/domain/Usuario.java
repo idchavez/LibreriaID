@@ -50,7 +50,7 @@ public class Usuario implements Serializable, UserDetails {
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
     private String email;
-    @Size(max = 255)
+    @Size(min = 8)
     private String password;
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.TIMESTAMP)
@@ -69,6 +69,17 @@ public class Usuario implements Serializable, UserDetails {
         this.idUsuario = idUsuario;
     }
 
+    public Usuario(String usuario, String password) {
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public Usuario(String usuario, String email, String password) {
+        this.usuario = usuario;
+        this.email = email;
+        this.password = password;
+    }
+    
     public Integer getIdUsuario() {
         return idUsuario;
     }
