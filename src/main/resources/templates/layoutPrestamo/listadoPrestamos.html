@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/fragmentos :: headlinks">
+        <title>Listado de Prestamos</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
+
+        <section th:fragment="listadoPrestamos" id="prestamos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Prestamos</h4>
+                            </div>
+                            <div class="table-responsive" th:if="${prestamos != null and !prestamos.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Fecha prestamo</th>
+                                            <th>Fecha entrega</th>
+                                            <th>Detalles</th>
+                                            <th>Libro</th>
+                                            <th>Entregado</th>
+                                            <th>Persona</th>
+                                            <th>Multa</th>
+                                            <th class="text-center" colspan="2">
+                                                Acciones
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="prestamo, contador : ${prestamos}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${prestamo.fechaPrestamo}]]</td>
+                                            <td>[[${prestamo.fechaEntrega}]]</td>
+                                            <td>[[${prestamo.detalles}]]</td>
+                                            <td>[[${prestamo.prestamolibro.titulo}]]</td>
+                                            <td>[[${prestamo.entregaReal}]]</td>
+                                            <td>[[${prestamo.prestamoPersona.primerNombre}]]</td>
+                                            <td>[[${prestamo.multa}]]</td>
+                                            <td>
+                                                <a th:href="@{/editarPrestamo/} + ${prestamo.idPrestamo}" class="btn btn-outline-primary">
+                                                    <i></i> Editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminarPrestamo(idPrestamo=${prestamo.idPrestamo})}" class="btn btn-outline-danger">
+                                                    <i></i> Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${prestamos==null or prestamos.empty}">
+                                <span >Lista de Prestamos vacia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PersonaService {
     
-    public List<Persona> listarPersonas();
+    public List<Persona> listarPersonas(String cadena);
     
     public void guardar(Persona persona);
     

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Editar Autor</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarAutor">
+            <form th:action="@{/guardarAutor}" th:object="${autor}"
+                  method="POST" class="was-validated">
+                <input type="hidden" name="idAutor" th:field="*{idAutor}"/>
+                
+                <section th:replace="layoutAutor/botonesEditarAutor :: botonesEditarAutor"></section>
+                
+                <div id="details">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4>Editar</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="alias">Alias</label>
+                                            <input type="text" class="form-control" name="alias"
+                                                   required="true" th:field="*{alias}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="personas">Persona</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="persona.idPersona" required>
+                                                <option value="" disabled selected>Seleccione una persona</option>
+                                                <option th:each="per : ${personas}"
+                                                        th:value="${per.idPersona}"
+                                                        th:text="${per.primerNombre} + ' ' + ${per.primerApellido} "
+                                                        th:selected="${per.idPersona} == *{persona.idPersona}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pais">Pais</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="paisAutor.idPais">
+                                                <option value="" disabled selected>Seleccione un pais</option>
+                                                <option th:each="pais : ${paises}"
+                                                        th:value="${pais.idPais}"
+                                                        th:text="${pais.pais}"
+                                                        th:selected="${pais.idPais} == *{paisAutor.idPais}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="biografia">Biografia</label>
+                                            <input type="text" class="form-control" name="biografia"
+                                                   required="true" th:field="*{biografia}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="estudios">Estudios</label>
+                                            <input type="text" class="form-control" name="estudios"
+                                                   required="true" th:field="*{estudios}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mail">Mail</label>
+                                            <input type="email" class="form-control" name="mail"
+                                                   required="true" th:field="*{mail}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

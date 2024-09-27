@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/fragmentos :: headlinks">
+        <title>Listado de Autores</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
+
+        <section th:fragment="listadoAutores" id="autores">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Autores</h4>
+                            </div>
+                            <div class="table-responsive" th:if="${autores != null and !autores.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Alias</th>
+                                            <th>Pais</th>
+                                            <th>Biografia</th>
+                                            <th>Estudios</th>
+                                            <th>Mail</th>
+                                            <th class="text-center" colspan="2">
+                                                Acciones
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="autor, contador : ${autores}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${autor.alias}]]</td>
+                                            <td>[[${autor.paisAutor.pais}]]</td>
+                                            <td>[[${autor.biografia}]]</td>
+                                            <td>[[${autor.estudios}]]</td>
+                                            <td>[[${autor.mail}]]</td>
+                                            <td>
+                                                <a th:href="@{/editarAutor/} + ${autor.idAutor}" class="btn btn-outline-primary">
+                                                    <i></i> Editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminarAutor(idAutor=${autor.idAutor})}" class="btn btn-outline-danger">
+                                                    <i></i> Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${autores==null or autores.empty}">
+                                <span >Lista de Autores vacia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

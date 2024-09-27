@@ -6,7 +6,6 @@
 package com.id.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -48,18 +45,15 @@ public class Prestamo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_prestamo")
-    @Temporal(TemporalType.DATE)
-    private Date fechaPrestamo;
+    private String fechaPrestamo;
     @Basic(optional = false)
     @NotNull
     @Column(name = "fecha_entrega")
-    @Temporal(TemporalType.DATE)
-    private Date fechaEntrega;
+    private String fechaEntrega;
     @Size(max = 100)
     private String detalles;
     @Column(name = "entrega_real")
-    @Temporal(TemporalType.DATE)
-    private Date entregaReal;
+    private String entregaReal;
     @Size(max = 50)
     private String multa;
     
@@ -77,7 +71,7 @@ public class Prestamo implements Serializable {
         this.idPrestamo = idPrestamo;
     }
 
-    public Prestamo(Integer idPrestamo, Date fechaPrestamo, Date fechaEntrega) {
+    public Prestamo(Integer idPrestamo, String fechaPrestamo, String fechaEntrega) {
         this.idPrestamo = idPrestamo;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaEntrega = fechaEntrega;
@@ -91,19 +85,19 @@ public class Prestamo implements Serializable {
         this.idPrestamo = idPrestamo;
     }
 
-    public Date getFechaPrestamo() {
+    public String getFechaPrestamo() {
         return fechaPrestamo;
     }
 
-    public void setFechaPrestamo(Date fechaPrestamo) {
+    public void setFechaPrestamo(String fechaPrestamo) {
         this.fechaPrestamo = fechaPrestamo;
     }
 
-    public Date getFechaEntrega() {
+    public String getFechaEntrega() {
         return fechaEntrega;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
+    public void setFechaEntrega(String fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
@@ -115,11 +109,11 @@ public class Prestamo implements Serializable {
         this.detalles = detalles;
     }
 
-    public Date getEntregaReal() {
+    public String getEntregaReal() {
         return entregaReal;
     }
 
-    public void setEntregaReal(Date entregaReal) {
+    public void setEntregaReal(String entregaReal) {
         this.entregaReal = entregaReal;
     }
 

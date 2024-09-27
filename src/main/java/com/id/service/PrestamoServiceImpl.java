@@ -24,7 +24,10 @@ public class PrestamoServiceImpl implements PrestamoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Prestamo> listarPrestamos() {
+    public List<Prestamo> listarPrestamos(String cadena) {
+        if (cadena != null) {
+            return prestamoDao.findAll(cadena);
+        }
         return (List<Prestamo>) prestamoDao.findAll();
     }
 

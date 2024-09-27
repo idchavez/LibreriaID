@@ -6,7 +6,6 @@
 package com.id.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -22,10 +21,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -67,8 +65,8 @@ public class Persona implements Serializable {
     @Column(name = "segundo_Apellido")
     private String segundoApellido;
     @Column(name = "fecha_Nacimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String fechaNacimiento;
     @Size(max = 50)
     @Column(name = "num_documento")
     private String numDocumento;
@@ -137,11 +135,11 @@ public class Persona implements Serializable {
         this.segundoApellido = segundoApellido;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

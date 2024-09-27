@@ -6,6 +6,8 @@
 package com.id.dao;
 
 import com.id.domain.Prestamo;
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +15,11 @@ import org.springframework.data.repository.CrudRepository;
  * @author id
  */
 public interface IPrestamoDao extends CrudRepository<Prestamo, Integer>{
-    
+ 
+    @Query("SELECT p FROM Prestamo p WHERE"
+            + " CONCAT(p.fechaPrestamo,p.fechaEntrega,p.detalles,"
+            + "p.prestamolibro.titulo,p.entregaReal,"
+            + "p.prestamoPersona.primerNombre,p.multa)"
+            + " LIKE %?1%")
+    public List<Prestamo> findAll(String cadena);
 }

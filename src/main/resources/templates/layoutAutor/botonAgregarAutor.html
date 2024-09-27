@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Botones Agregar</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <section th:fragment="botonAgregarAutor" class="py-4 mb-4 bg-light mt-3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-3">
+                        <a th:href="@{/agregarAutor}" class="btn btn-outline-primary btn-block">
+                            <i class="fas fa-plus"></i> Agregar Autor
+                        </a>
+                    </div>
+                    <div th:if="${mensaje}" class="col-md-3">
+                        <div class="alert alert-success alert-dismissible fade show btn-block" role="alert" style="text-align: center; padding: .375rem .75rem;">
+                            <p th:text="${mensaje}" style="margin-bottom: 0; display: inline;"></p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" 
+                                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

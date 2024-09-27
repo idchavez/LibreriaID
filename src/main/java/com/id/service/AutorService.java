@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface AutorService {
     
-    public List<Autor> listarAutores();
+    public List<Autor> listarAutores(String cadena);
     
     public void guardar(Autor autor);
     

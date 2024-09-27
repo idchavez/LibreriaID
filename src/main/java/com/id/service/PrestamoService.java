@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface PrestamoService {
     
-    public List<Prestamo> listarPrestamos();
+    public List<Prestamo> listarPrestamos(String cadena);
     
     public void guardar(Prestamo prestamo);
     

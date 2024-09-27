@@ -17,6 +17,7 @@ function logout() {
     const token = sessionStorage.getItem('token');
     console.log("Token antes de eliminar: ", token);
     
+    //al habilitarl
     //const fetch = require('node-fetch');
     
     // Realizar solicitud POST al endpoint de logout

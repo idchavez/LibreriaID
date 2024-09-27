@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="layout/fragmentos :: headlinks">
+        <title>Listado de Personas</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body style="background: linear-gradient( rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));">
+
+        <section th:fragment="listadoPersonas" id="personas">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Listado de Personas</h4>
+                            </div>
+                            <div class="table-responsive" th:if="${personas != null and !personas.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Fecha Nacimiento</th>
+                                            <th>Tipo persona</th>
+                                            <th>Tipo documento</th>
+                                            <th>#Documento</th>
+                                            <th class="text-center" colspan="2">
+                                                Acciones
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="persona, contador : ${personas}">
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${persona.primerNombre} + ' ' + ${persona.segundoNombre} + ' '
+                                                + ${persona.primerApellido} + ' ' + ${persona.segundoApellido}]]</td>
+                                            <td>[[${persona.fechaNacimiento}]]</td>
+                                            <td>[[${persona.tipoDePersona.tipoPersona}]]</td>
+                                            <td>[[${persona.tipoDocPersona.tipoDoc}]]</td>
+                                            <td>[[${persona.numDocumento}]]</td>
+                                            <td>
+                                                <a th:href="@{/editarPersona/} + ${persona.idPersona}" class="btn btn-outline-primary">
+                                                    <i></i> Editar
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a th:href="@{/eliminarPersona(idPersona=${persona.idPersona})}" class="btn btn-outline-danger">
+                                                    <i></i> Eliminar
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${personas==null or personas.empty}">
+                                <span >Lista de Personas vacia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

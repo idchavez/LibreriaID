@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Agregar Prestamo</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="agregarPrestamo">
+            <form th:action="@{/guardarPrestamo}" th:object="${prestamo}"
+                  method="POST" class="was-validated">
+
+                <section th:replace="layoutPrestamo/botonesAgregarPrestamo :: botonesAgregarPrestamo"></section>
+
+                <div id="details">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4>Agregar Prestamo</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="fechaPrestamo">Fecha Prestamo</label>
+                                            <input type="date" class="form-control" name="fechaPrestamo" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaEntrega">Fecha Entrega</label>
+                                            <input type="date" class="form-control" name="fechaEntrega" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="detalles">Detalles</label>
+                                            <input type="text" class="form-control" name="detalles" required/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="prestamolibro">Libro</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="prestamolibro.idLibro" required>
+                                                <option value="" disabled selected>Seleccione un libro</option>
+                                                <option th:each="libro : ${libros}"
+                                                        th:value="${libro.idLibro}"
+                                                        th:text="${libro.titulo}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="entregaReal">Entrega real</label>
+                                            <input type="date" class="form-control" name="entregaReal" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="prestamoPersona">Persona</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="prestamoPersona.idPersona" required>
+                                                <option value="" disabled selected>Seleccione una persona</option>
+                                                <option th:each="persona : ${personas}"
+                                                        th:value="${persona.idPersona}"
+                                                        th:text="${persona.primerNombre} + ' ' + ${persona.primerApellido} "
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="multa">Multa</label>
+                                            <input type="text" class="form-control" name="multa" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

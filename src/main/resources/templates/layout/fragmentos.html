@@ -13,7 +13,7 @@
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
         <script type="text/javascript">
             function limpiar() {
-                window.location.href = "/listadolibros";
+                window.location.href = "/home";
             }
         </script>
         <script src="/js/logout.js"></script>
@@ -42,9 +42,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/listadolibros">Libros</a>
-                                <a class="dropdown-item" href="#">Autores</a>
-                                <a class="dropdown-item" href="#">Editoriales</a>
-                                <a class="dropdown-item" href="#">Generos literarios</a>
+                                <a class="dropdown-item" href="/listadoAutores">Autores</a>
+                                <a class="dropdown-item" href="/listadoPersonas">Personas</a>
+                                <a class="dropdown-item" href="/listadoPrestamos">Prestamos</a>
                             </div>
                         </li>
                     </ul>

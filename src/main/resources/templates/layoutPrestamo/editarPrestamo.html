@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Editar Prestamo</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarPrestamo">
+            <form th:action="@{/guardarPrestamo}" th:object="${prestamo}"
+                  method="POST" class="was-validated">
+                <input type="hidden" name="idPrestamo" th:field="*{idPrestamo}"/>
+                
+                <section th:replace="layoutPrestamo/botonesEditarPrestamo :: botonesEditarPrestamo"></section>
+                
+                <div id="details">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4>Editar</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="fechaPrestamo">Fecha Prestamo</label>
+                                            <input type="date" class="form-control" name="fechaPrestamo" required th:field="*{fechaPrestamo}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaEntrega">Fecha Entrega</label>
+                                            <input type="date" class="form-control" name="fechaEntrega" required th:field="*{fechaEntrega}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="detalles">Detalles</label>
+                                            <input type="text" class="form-control" name="detalles" required th:field="*{detalles}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="libros">Libro</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="prestamolibro.idLibro" required>
+                                                <option value="" disabled selected>Seleccione un libro</option>
+                                                <option th:each="libro : ${libros}"
+                                                        th:value="${libro.idLibro}"
+                                                        th:text="${libro.titulo}"
+                                                        th:selected="${libro.idLibro} == *{prestamolibro.idLibro}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="entregaReal">Entrega real</label>
+                                            <input type="date" class="form-control" name="entregaReal" required th:field="*{entregaReal}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="personas">Persona</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="prestamoPersona.idPersona" required>
+                                                <option value="" disabled selected>Seleccione una persona</option>
+                                                <option th:each="persona : ${personas}"
+                                                        th:value="${persona.idPersona}"
+                                                        th:text="${persona.primerNombre} + ' ' + ${persona.primerApellido} "
+                                                        th:selected="${persona.idPersona} == *{prestamoPersona.idPersona}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="multa">Multa</label>
+                                            <input type="text" class="form-control" name="multa" required th:field="*{multa}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

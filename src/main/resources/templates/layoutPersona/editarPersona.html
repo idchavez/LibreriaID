@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>Editar Persona</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <section th:fragment="editarPersona">
+            <form th:action="@{/guardarPersona}" th:object="${persona}"
+                  method="POST" class="was-validated">
+                <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+                
+                <section th:replace="layoutPersona/botonesEditarPersona :: botonesEditarPersona"></section>
+                
+                <div id="details">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="card">
+                                    <div class="card-header bg-dark text-white">
+                                        <h4>Editar</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="primerNombre">Nombre</label>
+                                            <input type="text" class="form-control" name="primerNombre" required th:field="*{primerNombre}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="segundoNombre">segundo Nombre</label>
+                                            <input type="text" class="form-control" name="segundoNombre" required th:field="*{segundoNombre}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="primerApellido">primer apellido</label>
+                                            <input type="text" class="form-control" name="primerApellido" required th:field="*{primerApellido}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="segundoApellido">segundo Apellido</label>
+                                            <input type="text" class="form-control" name="segundoApellido" required th:field="*{segundoApellido}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaNacimiento">Fecha Nacimiento</label>
+                                            <input type="date" class="form-control" name="fechaNacimiento" required th:field="*{fechaNacimiento}"/>
+                                        </div>
+                                        <div>
+                                            <label for="tipoDePersona">Tipo Persona</label>
+                                            <select class="form-control no-valid" style="appearance: none"  name="tipoDePersona.idTipoPersona" required>
+                                                <option value="" disabled selected>Seleccione un tipo</option>
+                                                <option th:each="tipoPersona : ${tiposPersona}"
+                                                        th:value="${tipoPersona.idTipoPersona}"
+                                                        th:text="${tipoPersona.tipoPersona}"
+                                                        th:selected="${tipoPersona.idTipoPersona} == *{tipoDePersona.idTipoPersona}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tipoDocPersona">Tipo Documento</label>
+                                            <select class="form-control no-valid" style="appearance: none" name="tipoDocPersona.idTipoDoc" required>
+                                                <option value="" disabled selected>Seleccione un tipo</option>
+                                                <option th:each="tipoDocumento : ${tiposDocumento}"
+                                                        th:value="${tipoDocumento.idTipoDoc}"
+                                                        th:text="${tipoDocumento.tipoDoc}"
+                                                        th:selected="${tipoDocumento.idTipoDoc} == *{tipoDocPersona.idTipoDoc}"
+                                                        ></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="numDocumento">Documento</label>
+                                            <input type="text" class="form-control" name="numDocumento" required th:field="*{numDocumento}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </body>
+</html>

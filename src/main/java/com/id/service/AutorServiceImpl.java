@@ -24,7 +24,10 @@ public class AutorServiceImpl implements AutorService{
     
     @Override
     @Transactional(readOnly = true)
-    public List<Autor> listarAutores() {
+    public List<Autor> listarAutores(String cadena) {
+        if (cadena != null) {
+            return autorDao.findAll(cadena);
+        }
         return (List<Autor>) autorDao.findAll();
     }
 

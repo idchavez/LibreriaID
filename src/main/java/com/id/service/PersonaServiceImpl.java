@@ -24,7 +24,10 @@ public class PersonaServiceImpl implements PersonaService{
     
     @Override
     @Transactional(readOnly = true)
-    public List<Persona> listarPersonas() {
+    public List<Persona> listarPersonas(String cadena) {
+        if (cadena != null) {
+            return personaDao.findAll(cadena);
+        }
         return (List<Persona>) personaDao.findAll();
     }
 
